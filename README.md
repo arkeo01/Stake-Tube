@@ -1,5 +1,8 @@
 # Stake_Tube
 
+## About the Fork:
+   This is the react implementation of the original repo of the ETHIndia 2.0 Hackathon... This is still in development and any kind of Collaboration is encoraged...
+
 ## Problems that we aim to solve
 1. Control of a central authority or an organization over the content created by the creators
 2. The content creator does not get the true value for the content that they deserve.

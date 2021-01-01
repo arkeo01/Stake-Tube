@@ -5,11 +5,18 @@
 // requires are not analyzed
 // ipfs to be implemented
 // repeated viewer not implemented
+
+// Version : 0.1
+// Creator : Aniket Parate
+
 pragma solidity ^0.5.7;
+
+// TODO: Implement ownable contract
+// TODO: Implement safemath
 
 contract Attention {
     uint initialViewFee = 10000000000000000000 wei;
-    address payable owner = 0x8a30b2801f0618D2e0397074166156a9A5Ea7D81;
+    address payable owner = 0x8E333634117F2839768c042044B6710C82ACD1C7;
 
     struct Video {
         string name;
@@ -45,7 +52,7 @@ contract Attention {
         emit videoAdded(_videoId, msg.sender);
     }
 
-    function videoEarnings(uint _videoId) public payable {    //address need not be given as input msg.sender can be used
+    function videoEarnings(uint _videoId) public payable {
         Video storage videoClicked = videos[_videoId];              //SOME SERIOUS REFACTORING NEEDED
         //require(msg.sender != videoClicked.creatorId);
 

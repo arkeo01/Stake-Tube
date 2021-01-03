@@ -1,7 +1,8 @@
 # Stake_Tube
 
 ## About the Fork:
-   This is the react implementation of the original repo of the ETHIndia 2.0 Hackathon... This is still in development and any kind of Collaboration is encoraged...
+   This is the fork of the original project [Stake Tube](https://github.com/its-mayank/Stake-Tube) which was created as a part of ETHIndia 2.0 Hackathon
+   This repo aims to further improve the smart contract and is linked to a new frontend the repo of which can be found out [here](https://github.com/arkeo01/staketube-fe).
 
 ## Problems that we aim to solve
 1. Control of a central authority or an organization over the content created by the creators

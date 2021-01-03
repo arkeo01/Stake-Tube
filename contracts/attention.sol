@@ -64,29 +64,29 @@ contract Attention {
         Video storage videoClicked = videos[_videoId];              // TODO: Check for Refactoring
         //require(msg.sender != videoClicked.creatorId);
 
-        // uint views;
-        // if(videoClicked.users.length == 1){
-        owner.transfer(initialViewFee/80);      // 1.25% of value for the company
-        videoClicked.users[0].transfer(79*(initialViewFee/80));
-        // }
-        // else{
-        //     views = videoClicked.users.length - 1;
-        //     owner.transfer(initialViewFee/80);      // 1.25% of value for the company
-        //     videoClicked.users[0].transfer(9*initialViewFee/20);
-        //     uint deno;
-        //     if(views % 2 == 0)
-        //         deno = (views/2)*(views + 1);
-        //     else{
-        //         deno = views*((views+1)/2);
-        //         uint fraction = 0;
-        //         uint num = 0;
-        //         for(uint i = 1; i < videoClicked.users.length; i++){
-        //             num = views - (i-1);
-        //             fraction = num/deno;
-        //             videoClicked.users[i].transfer(fraction * (initialViewFee / 2));
-        //         }
-        //     }
-        // }
+        uint views;
+        if(videoClicked.users.length == 1){
+            owner.transfer(initialViewFee/80);      // 1.25% of value for the company
+            videoClicked.users[0].transfer(79*(initialViewFee/80));
+        }
+        else{
+            views = videoClicked.users.length - 1;
+            owner.transfer(initialViewFee/80);      // 1.25% of value for the company
+            videoClicked.users[0].transfer(9*initialViewFee/20);
+            uint deno;
+            if(views % 2 == 0)
+                deno = (views/2)*(views + 1);
+            else{
+                deno = views*((views+1)/2);
+                uint fraction = 0;
+                uint num = 0;
+                for(uint i = 1; i < videoClicked.users.length; i++){
+                    num = views - (i-1);
+                    fraction = num/deno;
+                    videoClicked.users[i].transfer(fraction * (initialViewFee / 2));
+                }
+            }
+        }
         
 
         if(msg.sender != videoClicked.users[0])                         // TODO: Implement check with all users

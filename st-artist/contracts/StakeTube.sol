@@ -4,6 +4,8 @@ pragma solidity ^0.7.0;
 /// @title Attention economy for videos
 /// @author Aniket Parate
 /// @notice Contract implementing direct and complete payment to the artist as well as adding videos
+/// @dev Current implementation just consists of tipping and distribution of the tips.
+/// @dev Later Implementations include: NFTs, Streaming, Bulk transfers
 contract StakeTube {
 
     /// @notice Structure for storing videos
@@ -13,6 +15,7 @@ contract StakeTube {
         string name;
         string description;
         address payable creator;
+        // TODO: Implement IPFS
         // string ipfsHash;
     }
 
@@ -22,11 +25,12 @@ contract StakeTube {
     /// @notice Mapping from video id to the video struct stored on blockchain
     mapping (uint => Video) public idToVideo;
 
-    /// @notice This can also be an alternative structure in which the videos can be stored
-    /// @notice See for Tradeoffs
-    // Video[] public videos;
+    /// @notice Mapping from Video id to tippers array
+    /// @dev A different mapping is created because if it would have been stored in an array as earlier, 
+    /// @dev then everytime the complete video object would have been needed to be fetched which would be expensive
+    mapping (uint => address payable[]) public idToTippers;
 
-    /// @notice Event emitted after video is addVideo
+    /// @notice Event emitted after video is added using addVideo
     event videoAdded(
         uint videoId,
         address payable creator
@@ -43,17 +47,6 @@ contract StakeTube {
     /// @dev Add the necessary require statements
     /// @param _name Name of Video
     /// @param _description Description of Video
-    // function addVideo(string memory _name, string memory _description) public {
-    //     totalVideos++;
-    //     uint _videoId = totalVideos;
-    //     videos.push(Video(
-    //         _videoId,
-    //         _name,
-    //         _description,
-    //         msg.sender
-    //     ));
-    //     emit videoAdded(_videoId, msg.sender);
-    // }
     function addVideo(string memory _name, string memory _description) public {
         totalVideos++;
         uint _videoId = totalVideos;
@@ -68,6 +61,12 @@ contract StakeTube {
 
     }
 
+    /// @notice Adding tipper to the corresponding video with given video Id
+    /// @param _videoId Id of the video
+    function addTipper(uint _videoId) private {
+        idToTippers[_videoId].push(msg.sender);
+    }
+
     /// @notice Function for tipping the creator of the video
     /// @param _videoId Id of the video
     /// @dev CAUTION Currently it is taking the index of array, to be modified to take video Id
@@ -76,11 +75,27 @@ contract StakeTube {
         address payable creator = myVideo.creator;
         uint myVideoId = myVideo.videoId;
 
+        // TODO: Test requires
+        require(
+            idToVideo[_videoId].creator != address(0),
+            "Video does not exists!"
+        );
+
         require(
             msg.value > 0, 
             "The tip should be non-zero."
         );
 
+        require(
+            msg.sender != creator,
+            "Creator of the video cannot tip themselves!"
+        );
+
+        // TODO: Require for checking if the tipper exists currently
+        addTipper(_videoId);
+
+        // TODO: Failure condition of the value transfer to be handled
+        // TODO: Distribution function to be implemented.
         creator.transfer(msg.value);
         emit tipped(myVideoId, creator, msg.sender);
     }

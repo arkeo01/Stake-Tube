@@ -9,6 +9,18 @@
           "internalType": "uint256",
           "name": "videoId",
           "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "creator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address payable",
+          "name": "tipper",
+          "type": "address"
         }
       ],
       "name": "tipped",
@@ -34,40 +46,6 @@
       "type": "event"
     },
     {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "idToVideo",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "videoId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "description",
-          "type": "string"
-        },
-        {
-          "internalType": "address payable",
-          "name": "creator",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "inputs": [],
       "name": "totalVideos",
       "outputs": [
@@ -78,7 +56,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -112,7 +91,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -133,31 +113,38 @@
       "type": "function"
     },
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_videoId",
+          "type": "uint256"
+        }
+      ],
       "name": "tip",
       "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
+      "stateMutability": "payable",
+      "type": "function",
+      "payable": true
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"videoId\",\"type\":\"uint256\"}],\"name\":\"tipped\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"videoId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address payable\",\"name\":\"creator\",\"type\":\"address\"}],\"name\":\"videoAdded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"}],\"name\":\"addVideo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"idToVideo\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"videoId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address payable\",\"name\":\"creator\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"tip\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalVideos\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"videos\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"videoId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address payable\",\"name\":\"creator\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Aniket Parate\",\"kind\":\"dev\",\"methods\":{\"addVideo(string,string)\":{\"details\":\"Adds Video Details to the blockchainAdd the necessary require statements\",\"params\":{\"_description\":\"Description of Video\",\"_name\":\"Name of Video\"}},\"tip()\":{\"details\":\"CAUTION Currently it is taking the index of array, to be modified to take video Id\"}},\"title\":\"Attention economy for videos\",\"version\":1},\"userdoc\":{\"events\":{\"tipped(uint256)\":{\"notice\":\"Event after the amount is tipped\"},\"videoAdded(uint256,address)\":{\"notice\":\"Event emitted after video is addVideo\"}},\"kind\":\"user\",\"methods\":{\"idToVideo(uint256)\":{\"notice\":\"mapping from id to Video object\"},\"tip()\":{\"notice\":\"Function for tipping the creator of the video\"},\"totalVideos()\":{\"notice\":\"total number of videos stored currently.\"},\"videos(uint256)\":{\"notice\":\"Array containing all the videos\"}},\"notice\":\"Contract implementing direct and complete payment to the artist as well as adding videos\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/versilio/VERSILIO/Techworks/Blockchain/Stake-Tube/st-artist/contracts/StakeTube.sol\":\"StakeTube\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/versilio/VERSILIO/Techworks/Blockchain/Stake-Tube/st-artist/contracts/StakeTube.sol\":{\"keccak256\":\"0xcbc6930985ae906f8669009c6dadb60de2f1457d886c0adf571984ea19c5769f\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://c4f648c00ff43bc1b060d4c55f576216b61cb8de8450453b1745f817ce68ab4c\",\"dweb:/ipfs/QmVa45LUYLmxjjs3q92PHz49VzrPk36QUQBaHx6uCxddYv\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506109ff806100206000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80630dbd9bdc1461005c5780632755cd2d146101ae578063cd544f64146101b8578063e230a208146102ef578063e6821bf51461030d575b600080fd5b6101ac6004803603604081101561007257600080fd5b810190808035906020019064010000000081111561008f57600080fd5b8201836020820111156100a157600080fd5b803590602001918460018302840111640100000000831117156100c357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561012657600080fd5b82018360208201111561013857600080fd5b8035906020019184600183028401116401000000008311171561015a57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610444565b005b6101b66105a4565b005b6101e4600480360360208110156101ce57600080fd5b8101908080359060200190929190505050610608565b6040518085815260200180602001806020018473ffffffffffffffffffffffffffffffffffffffff168152602001838103835286818151815260200191508051906020019080838360005b8381101561024a57808201518184015260208101905061022f565b50505050905090810190601f1680156102775780820380516001836020036101000a031916815260200191505b50838103825285818151815260200191508051906020019080838360005b838110156102b0578082015181840152602081019050610295565b50505050905090810190601f1680156102dd5780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b6102f7610788565b6040518082815260200191505060405180910390f35b6103396004803603602081101561032357600080fd5b810190808035906020019092919050505061078e565b6040518085815260200180602001806020018473ffffffffffffffffffffffffffffffffffffffff168152602001838103835286818151815260200191508051906020019080838360005b8381101561039f578082015181840152602081019050610384565b50505050905090810190601f1680156103cc5780820380516001836020036101000a031916815260200191505b50838103825285818151815260200191508051906020019080838360005b838110156104055780820151818401526020810190506103ea565b50505050905090810190601f1680156104325780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b6000808154809291906001019190505550600080549050600160405180608001604052808381526020018581526020018481526020013373ffffffffffffffffffffffffffffffffffffffff1681525090806001815401808255809150506001900390600052602060002090600402016000909190919091506000820151816000015560208201518160010190805190602001906104e392919061091e565b50604082015181600201908051906020019061050092919061091e565b5060608201518160030160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050507f575c04ce1860600eaadeffb7de46bfa696eef7a41f20431cf444a41ede93ebcc8133604051808381526020018273ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390a1505050565b600060016000815481106105b457fe5b906000526020600020906004020190506000816000015490507f0e947bd5318dc18fdab518b172a221e300e66877b9615ea32b52944bf236b727816040518082815260200191505060405180910390a15050565b6002602052806000526040600020600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156106ba5780601f1061068f576101008083540402835291602001916106ba565b820191906000526020600020905b81548152906001019060200180831161069d57829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156107585780601f1061072d57610100808354040283529160200191610758565b820191906000526020600020905b81548152906001019060200180831161073b57829003601f168201915b5050505050908060030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905084565b60005481565b6001818154811061079e57600080fd5b9060005260206000209060040201600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108505780601f1061082557610100808354040283529160200191610850565b820191906000526020600020905b81548152906001019060200180831161083357829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108ee5780601f106108c3576101008083540402835291602001916108ee565b820191906000526020600020905b8154815290600101906020018083116108d157829003601f168201915b5050505050908060030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905084565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282610954576000855561099b565b82601f1061096d57805160ff191683800117855561099b565b8280016001018555821561099b579182015b8281111561099a57825182559160200191906001019061097f565b5b5090506109a891906109ac565b5090565b5b808211156109c55760008160009055506001016109ad565b509056fea2646970667358221220becd47a496bb8f28f793baf8fbb697d0df6c3e1db6e2fd2aff0fd0b247a5b84364736f6c63430007060033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c80630dbd9bdc1461005c5780632755cd2d146101ae578063cd544f64146101b8578063e230a208146102ef578063e6821bf51461030d575b600080fd5b6101ac6004803603604081101561007257600080fd5b810190808035906020019064010000000081111561008f57600080fd5b8201836020820111156100a157600080fd5b803590602001918460018302840111640100000000831117156100c357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561012657600080fd5b82018360208201111561013857600080fd5b8035906020019184600183028401116401000000008311171561015a57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610444565b005b6101b66105a4565b005b6101e4600480360360208110156101ce57600080fd5b8101908080359060200190929190505050610608565b6040518085815260200180602001806020018473ffffffffffffffffffffffffffffffffffffffff168152602001838103835286818151815260200191508051906020019080838360005b8381101561024a57808201518184015260208101905061022f565b50505050905090810190601f1680156102775780820380516001836020036101000a031916815260200191505b50838103825285818151815260200191508051906020019080838360005b838110156102b0578082015181840152602081019050610295565b50505050905090810190601f1680156102dd5780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b6102f7610788565b6040518082815260200191505060405180910390f35b6103396004803603602081101561032357600080fd5b810190808035906020019092919050505061078e565b6040518085815260200180602001806020018473ffffffffffffffffffffffffffffffffffffffff168152602001838103835286818151815260200191508051906020019080838360005b8381101561039f578082015181840152602081019050610384565b50505050905090810190601f1680156103cc5780820380516001836020036101000a031916815260200191505b50838103825285818151815260200191508051906020019080838360005b838110156104055780820151818401526020810190506103ea565b50505050905090810190601f1680156104325780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b6000808154809291906001019190505550600080549050600160405180608001604052808381526020018581526020018481526020013373ffffffffffffffffffffffffffffffffffffffff1681525090806001815401808255809150506001900390600052602060002090600402016000909190919091506000820151816000015560208201518160010190805190602001906104e392919061091e565b50604082015181600201908051906020019061050092919061091e565b5060608201518160030160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050507f575c04ce1860600eaadeffb7de46bfa696eef7a41f20431cf444a41ede93ebcc8133604051808381526020018273ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390a1505050565b600060016000815481106105b457fe5b906000526020600020906004020190506000816000015490507f0e947bd5318dc18fdab518b172a221e300e66877b9615ea32b52944bf236b727816040518082815260200191505060405180910390a15050565b6002602052806000526040600020600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156106ba5780601f1061068f576101008083540402835291602001916106ba565b820191906000526020600020905b81548152906001019060200180831161069d57829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156107585780601f1061072d57610100808354040283529160200191610758565b820191906000526020600020905b81548152906001019060200180831161073b57829003601f168201915b5050505050908060030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905084565b60005481565b6001818154811061079e57600080fd5b9060005260206000209060040201600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108505780601f1061082557610100808354040283529160200191610850565b820191906000526020600020905b81548152906001019060200180831161083357829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108ee5780601f106108c3576101008083540402835291602001916108ee565b820191906000526020600020905b8154815290600101906020018083116108d157829003601f168201915b5050505050908060030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905084565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282610954576000855561099b565b82601f1061096d57805160ff191683800117855561099b565b8280016001018555821561099b579182015b8281111561099a57825182559160200191906001019061097f565b5b5090506109a891906109ac565b5090565b5b808211156109c55760008160009055506001016109ad565b509056fea2646970667358221220becd47a496bb8f28f793baf8fbb697d0df6c3e1db6e2fd2aff0fd0b247a5b84364736f6c63430007060033",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"videoId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address payable\",\"name\":\"creator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address payable\",\"name\":\"tipper\",\"type\":\"address\"}],\"name\":\"tipped\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"videoId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address payable\",\"name\":\"creator\",\"type\":\"address\"}],\"name\":\"videoAdded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"}],\"name\":\"addVideo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_videoId\",\"type\":\"uint256\"}],\"name\":\"tip\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalVideos\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"videos\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"videoId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address payable\",\"name\":\"creator\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Aniket Parate\",\"kind\":\"dev\",\"methods\":{\"addVideo(string,string)\":{\"details\":\"Adds Video Details to the blockchainAdd the necessary require statements\",\"params\":{\"_description\":\"Description of Video\",\"_name\":\"Name of Video\"}},\"tip(uint256)\":{\"details\":\"CAUTION Currently it is taking the index of array, to be modified to take video Id\",\"params\":{\"_videoId\":\"Id of the video\"}}},\"title\":\"Attention economy for videos\",\"version\":1},\"userdoc\":{\"events\":{\"tipped(uint256,address,address)\":{\"notice\":\"Event after the amount is tipped\"},\"videoAdded(uint256,address)\":{\"notice\":\"Event emitted after video is addVideo\"}},\"kind\":\"user\",\"methods\":{\"tip(uint256)\":{\"notice\":\"Function for tipping the creator of the video\"},\"totalVideos()\":{\"notice\":\"total number of videos stored currently.\"},\"videos(uint256)\":{\"notice\":\"Mapping from video id to the video struct stored on blockchain\"}},\"notice\":\"Contract implementing direct and complete payment to the artist as well as adding videos\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/versilio/VERSILIO/Techworks/Blockchain/Stake-Tube/st-artist/contracts/StakeTube.sol\":\"StakeTube\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/versilio/VERSILIO/Techworks/Blockchain/Stake-Tube/st-artist/contracts/StakeTube.sol\":{\"keccak256\":\"0x8bf83cf1554ce6684753a2c8c1c2a636c4c9f67e9fdd1090429dc8010b48ab1e\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://8eece7d2357244e20d7db55b00c1a4843b12e97bd62e6f429ca45dbab2c986cd\",\"dweb:/ipfs/QmZoXSpV7DUhVSS2EsPAjpxWR8UBZeacMekgGE2LsBQv1E\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610875806100206000396000f3fe60806040526004361061003f5760003560e01c80630dbd9bdc14610044578063e230a208146101a3578063e6821bf5146101ce578063e8b69bc314610312575b600080fd5b34801561005057600080fd5b506101a16004803603604081101561006757600080fd5b810190808035906020019064010000000081111561008457600080fd5b82018360208201111561009657600080fd5b803590602001918460018302840111640100000000831117156100b857600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561011b57600080fd5b82018360208201111561012d57600080fd5b8035906020019184600183028401116401000000008311171561014f57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610340565b005b3480156101af57600080fd5b506101b861048f565b6040518082815260200191505060405180910390f35b3480156101da57600080fd5b50610207600480360360208110156101f157600080fd5b8101908080359060200190929190505050610495565b6040518085815260200180602001806020018473ffffffffffffffffffffffffffffffffffffffff168152602001838103835286818151815260200191508051906020019080838360005b8381101561026d578082015181840152602081019050610252565b50505050905090810190601f16801561029a5780820380516001836020036101000a031916815260200191505b50838103825285818151815260200191508051906020019080838360005b838110156102d35780820151818401526020810190506102b8565b50505050905090810190601f1680156103005780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b61033e6004803603602081101561032857600080fd5b8101908080359060200190929190505050610615565b005b6000808154809291906001019190505550600080549050600060405180608001604052808381526020018581526020018481526020013373ffffffffffffffffffffffffffffffffffffffff16815250905080600160008481526020019081526020016000206000820151816000015560208201518160010190805190602001906103cc929190610794565b5060408201518160020190805190602001906103e9929190610794565b5060608201518160030160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055509050507f575c04ce1860600eaadeffb7de46bfa696eef7a41f20431cf444a41ede93ebcc8233604051808381526020018273ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390a150505050565b60005481565b6001602052806000526040600020600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105475780601f1061051c57610100808354040283529160200191610547565b820191906000526020600020905b81548152906001019060200180831161052a57829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105e55780601f106105ba576101008083540402835291602001916105e5565b820191906000526020600020905b8154815290600101906020018083116105c857829003601f168201915b5050505050908060030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905084565b600060016000838152602001908152602001600020905060008160030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050600082600001549050600034116106d4576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f546865207469702073686f756c64206265206e6f6e2d7a65726f2e000000000081525060200191505060405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505015801561071a573d6000803e3d6000fd5b507fff4e2c4b5b26e1896ee316ccc4b45ebe98440c57e707da4c11c3354727260f72818333604051808481526020018373ffffffffffffffffffffffffffffffffffffffff1681526020018273ffffffffffffffffffffffffffffffffffffffff168152602001935050505060405180910390a150505050565b828054600181600116156101000203166002900490600052602060002090601f0160209004810192826107ca5760008555610811565b82601f106107e357805160ff1916838001178555610811565b82800160010185558215610811579182015b828111156108105782518255916020019190600101906107f5565b5b50905061081e9190610822565b5090565b5b8082111561083b576000816000905550600101610823565b509056fea264697066735822122079f45af358dd8dd1309489d25d8ec81758ccf02aae98cb69e909949bb47db09864736f6c63430007060033",
+  "deployedBytecode": "0x60806040526004361061003f5760003560e01c80630dbd9bdc14610044578063e230a208146101a3578063e6821bf5146101ce578063e8b69bc314610312575b600080fd5b34801561005057600080fd5b506101a16004803603604081101561006757600080fd5b810190808035906020019064010000000081111561008457600080fd5b82018360208201111561009657600080fd5b803590602001918460018302840111640100000000831117156100b857600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561011b57600080fd5b82018360208201111561012d57600080fd5b8035906020019184600183028401116401000000008311171561014f57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610340565b005b3480156101af57600080fd5b506101b861048f565b6040518082815260200191505060405180910390f35b3480156101da57600080fd5b50610207600480360360208110156101f157600080fd5b8101908080359060200190929190505050610495565b6040518085815260200180602001806020018473ffffffffffffffffffffffffffffffffffffffff168152602001838103835286818151815260200191508051906020019080838360005b8381101561026d578082015181840152602081019050610252565b50505050905090810190601f16801561029a5780820380516001836020036101000a031916815260200191505b50838103825285818151815260200191508051906020019080838360005b838110156102d35780820151818401526020810190506102b8565b50505050905090810190601f1680156103005780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b61033e6004803603602081101561032857600080fd5b8101908080359060200190929190505050610615565b005b6000808154809291906001019190505550600080549050600060405180608001604052808381526020018581526020018481526020013373ffffffffffffffffffffffffffffffffffffffff16815250905080600160008481526020019081526020016000206000820151816000015560208201518160010190805190602001906103cc929190610794565b5060408201518160020190805190602001906103e9929190610794565b5060608201518160030160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055509050507f575c04ce1860600eaadeffb7de46bfa696eef7a41f20431cf444a41ede93ebcc8233604051808381526020018273ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390a150505050565b60005481565b6001602052806000526040600020600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105475780601f1061051c57610100808354040283529160200191610547565b820191906000526020600020905b81548152906001019060200180831161052a57829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105e55780601f106105ba576101008083540402835291602001916105e5565b820191906000526020600020905b8154815290600101906020018083116105c857829003601f168201915b5050505050908060030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905084565b600060016000838152602001908152602001600020905060008160030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050600082600001549050600034116106d4576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f546865207469702073686f756c64206265206e6f6e2d7a65726f2e000000000081525060200191505060405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505015801561071a573d6000803e3d6000fd5b507fff4e2c4b5b26e1896ee316ccc4b45ebe98440c57e707da4c11c3354727260f72818333604051808481526020018373ffffffffffffffffffffffffffffffffffffffff1681526020018273ffffffffffffffffffffffffffffffffffffffff168152602001935050505060405180910390a150505050565b828054600181600116156101000203166002900490600052602060002090601f0160209004810192826107ca5760008555610811565b82601f106107e357805160ff1916838001178555610811565b82800160010185558215610811579182015b828111156108105782518255916020019190600101906107f5565b5b50905061081e9190610822565b5090565b5b8082111561083b576000816000905550600101610823565b509056fea264697066735822122079f45af358dd8dd1309489d25d8ec81758ccf02aae98cb69e909949bb47db09864736f6c63430007060033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "231:1617:1:-:0;;;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "231:1617:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1218:317;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1699:146;;;:::i;:::-;;754:39;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;600:23;;;:::i;:::-;;;;;;;;;;;;;;;;;;;678:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1218:317;1302:11;;:13;;;;;;;;;;;;;1325;1341:11;;1325:27;;1362:6;1374:106;;;;;;;;1393:8;1374:106;;;;1415:5;1374:106;;;;1434:12;1374:106;;;;1460:10;1374:106;;;;;1362:119;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1496:32;1507:8;1517:10;1496:32;;;;;;;;;;;;;;;;;;;;;;;;;;1218:317;;;:::o;1699:146::-;1731:21;1755:6;1762:1;1755:9;;;;;;;;;;;;;;;;;;1731:33;;1774:14;1791:7;:15;;;1774:32;;1821:17;1828:9;1821:17;;;;;;;;;;;;;;;;;;1699:146;;:::o;754:39::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;600:23::-;;;;:::o;678:21::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;-1:-1:-1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;:::o",
-  "source": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.7.0;\n\n/// @title Attention economy for videos\n/// @author Aniket Parate\n/// @notice Contract implementing direct and complete payment to the artist as well as adding videos\ncontract StakeTube {\n\n    /// @notice Structure for storing videos\n    /// @dev currently ipfs is not implemented, implement using the string ipfsHash\n    struct Video{\n        uint videoId;\n        string name;\n        string description;\n        address payable creator;\n        // string ipfsHash;\n    }\n\n    /// @notice total number of videos stored currently.\n    uint public totalVideos;\n\n    /// @notice Array containing all the videos\n    Video[] public videos;\n\n    /// @notice mapping from id to Video object\n    mapping(uint => Video) public idToVideo;\n\n    /// @notice Event emitted after video is addVideo\n    event videoAdded(\n        uint videoId,\n        address payable creator\n    );\n\n    /// @notice Event after the amount is tipped\n    event tipped(\n        uint videoId\n    );\n\n    /// @dev Adds Video Details to the blockchain\n    /// @dev Add the necessary require statements\n    /// @param _name Name of Video\n    /// @param _description Description of Video\n    function addVideo(string memory _name, string memory _description) public {\n        totalVideos++;\n        uint _videoId = totalVideos;\n        videos.push(Video(\n            _videoId,\n            _name,\n            _description,\n            msg.sender\n        ));\n        emit videoAdded(_videoId, msg.sender);\n    }\n\n    /// @notice Function for tipping the creator of the video\n    /// @dev CAUTION Currently it is taking the index of array, to be modified to take video Id\n    function tip() public {\n        Video storage myVideo = videos[0];\n        uint myVideoId = myVideo.videoId;\n        emit tipped(myVideoId);\n    }\n\n}",
+  "sourceMap": "231:2485:1:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "231:2485:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1767:360;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;600:23;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;788:37;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2331:382;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1767:360;1851:11;;:13;;;;;;;;;;;;;1874;1890:11;;1874:27;;1911:18;1932:106;;;;;;;;1951:8;1932:106;;;;1973:5;1932:106;;;;1992:12;1932:106;;;;2018:10;1932:106;;;;;1911:127;;2067:5;2048:6;:16;2055:8;2048:16;;;;;;;;;;;:24;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2087:32;2098:8;2108:10;2087:32;;;;;;;;;;;;;;;;;;;;;;;;;;1767:360;;;;:::o;600:23::-;;;;:::o;788:37::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;2331:382::-;2383:21;2407:6;:16;2414:8;2407:16;;;;;;;;;;;2383:40;;2433:23;2459:7;:15;;;;;;;;;;;;2433:41;;2484:14;2501:7;:15;;;2484:32;;2560:1;2548:9;:13;2527:88;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2626:7;:16;;:27;2643:9;2626:27;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2668:38;2675:9;2686:7;2695:10;2668:38;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2331:382;;;;:::o;-1:-1:-1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.7.0;\n\n/// @title Attention economy for videos\n/// @author Aniket Parate\n/// @notice Contract implementing direct and complete payment to the artist as well as adding videos\ncontract StakeTube {\n\n    /// @notice Structure for storing videos\n    /// @dev currently ipfs is not implemented, implement using the string ipfsHash\n    struct Video{\n        uint videoId;\n        string name;\n        string description;\n        address payable creator;\n        // string ipfsHash;\n    }\n\n    /// @notice total number of videos stored currently.\n    uint public totalVideos;\n\n    /// @notice Array containing all the videos\n    // Video[] public videos;\n\n    /// @notice Mapping from video id to the video struct stored on blockchain\n    mapping (uint => Video) public videos;\n\n    /// @notice mapping from id to Video object\n    // mapping(uint => Video) public idToVideo;\n\n    /// @notice Event emitted after video is addVideo\n    event videoAdded(\n        uint videoId,\n        address payable creator\n    );\n\n    /// @notice Event after the amount is tipped\n    event tipped(\n        uint videoId,\n        address payable creator,\n        address payable tipper\n    );\n\n    /// @dev Adds Video Details to the blockchain\n    /// @dev Add the necessary require statements\n    /// @param _name Name of Video\n    /// @param _description Description of Video\n    // function addVideo(string memory _name, string memory _description) public {\n    //     totalVideos++;\n    //     uint _videoId = totalVideos;\n    //     videos.push(Video(\n    //         _videoId,\n    //         _name,\n    //         _description,\n    //         msg.sender\n    //     ));\n    //     emit videoAdded(_videoId, msg.sender);\n    // }\n    function addVideo(string memory _name, string memory _description) public {\n        totalVideos++;\n        uint _videoId = totalVideos;\n        Video memory video = Video(\n            _videoId,\n            _name,\n            _description,\n            msg.sender\n        );\n        videos[_videoId] = video;\n        emit videoAdded(_videoId, msg.sender);\n\n    }\n\n    /// @notice Function for tipping the creator of the video\n    /// @param _videoId Id of the video\n    /// @dev CAUTION Currently it is taking the index of array, to be modified to take video Id\n    function tip(uint _videoId) public payable{\n        Video storage myVideo = videos[_videoId];\n        address payable creator = myVideo.creator;\n        uint myVideoId = myVideo.videoId;\n\n        require(\n            msg.value > 0, \n            \"The tip should be non-zero.\"\n        );\n\n        creator.transfer(msg.value);\n        emit tipped(myVideoId, creator, msg.sender);\n    }\n\n}",
   "sourcePath": "/home/versilio/VERSILIO/Techworks/Blockchain/Stake-Tube/st-artist/contracts/StakeTube.sol",
   "ast": {
     "absolutePath": "/home/versilio/VERSILIO/Techworks/Blockchain/Stake-Tube/st-artist/contracts/StakeTube.sol",
     "exportedSymbols": {
       "StakeTube": [
-        123
+        152
       ]
     },
-    "id": 124,
+    "id": 153,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -184,9 +171,9 @@
           "text": "@title Attention economy for videos\n @author Aniket Parate\n @notice Contract implementing direct and complete payment to the artist as well as adding videos"
         },
         "fullyImplemented": true,
-        "id": 123,
+        "id": 152,
         "linearizedBaseContracts": [
-          123
+          152
         ],
         "name": "StakeTube",
         "nodeType": "ContractDefinition",
@@ -303,7 +290,7 @@
             ],
             "name": "Video",
             "nodeType": "StructDefinition",
-            "scope": 123,
+            "scope": 152,
             "src": "386:151:1",
             "visibility": "public"
           },
@@ -320,7 +307,7 @@
             "mutability": "mutable",
             "name": "totalVideos",
             "nodeType": "VariableDeclaration",
-            "scope": 123,
+            "scope": 152,
             "src": "600:23:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -345,59 +332,16 @@
             "documentation": {
               "id": 48,
               "nodeType": "StructuredDocumentation",
-              "src": "630:43:1",
-              "text": "@notice Array containing all the videos"
+              "src": "709:74:1",
+              "text": "@notice Mapping from video id to the video struct stored on blockchain"
             },
             "functionSelector": "e6821bf5",
-            "id": 51,
+            "id": 52,
             "mutability": "mutable",
             "name": "videos",
             "nodeType": "VariableDeclaration",
-            "scope": 123,
-            "src": "678:21:1",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_Video_$44_storage_$dyn_storage",
-              "typeString": "struct StakeTube.Video[]"
-            },
-            "typeName": {
-              "baseType": {
-                "id": 49,
-                "name": "Video",
-                "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 44,
-                "src": "678:5:1",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
-                  "typeString": "struct StakeTube.Video"
-                }
-              },
-              "id": 50,
-              "nodeType": "ArrayTypeName",
-              "src": "678:7:1",
-              "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_Video_$44_storage_$dyn_storage_ptr",
-                "typeString": "struct StakeTube.Video[]"
-              }
-            },
-            "visibility": "public"
-          },
-          {
-            "constant": false,
-            "documentation": {
-              "id": 52,
-              "nodeType": "StructuredDocumentation",
-              "src": "706:43:1",
-              "text": "@notice mapping from id to Video object"
-            },
-            "functionSelector": "cd544f64",
-            "id": 56,
-            "mutability": "mutable",
-            "name": "idToVideo",
-            "nodeType": "VariableDeclaration",
-            "scope": 123,
-            "src": "754:39:1",
+            "scope": 152,
+            "src": "788:37:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -405,29 +349,29 @@
               "typeString": "mapping(uint256 => struct StakeTube.Video)"
             },
             "typeName": {
-              "id": 55,
+              "id": 51,
               "keyType": {
-                "id": 53,
+                "id": 49,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "762:4:1",
+                "src": "797:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "754:22:1",
+              "src": "788:23:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Video_$44_storage_$",
                 "typeString": "mapping(uint256 => struct StakeTube.Video)"
               },
               "valueType": {
-                "id": 54,
+                "id": 50,
                 "name": "Video",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 44,
-                "src": "770:5:1",
+                "src": "805:5:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
                   "typeString": "struct StakeTube.Video"
@@ -439,27 +383,27 @@
           {
             "anonymous": false,
             "documentation": {
-              "id": 57,
+              "id": 53,
               "nodeType": "StructuredDocumentation",
-              "src": "800:49:1",
+              "src": "929:49:1",
               "text": "@notice Event emitted after video is addVideo"
             },
-            "id": 63,
+            "id": 59,
             "name": "videoAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 62,
+              "id": 58,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 59,
+                  "id": 55,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "videoId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 63,
-                  "src": "880:12:1",
+                  "scope": 59,
+                  "src": "1009:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -467,10 +411,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 58,
+                    "id": 54,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "880:4:1",
+                    "src": "1009:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -480,13 +424,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 61,
+                  "id": 57,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "creator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 63,
-                  "src": "902:23:1",
+                  "scope": 59,
+                  "src": "1031:23:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -494,10 +438,10 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 60,
+                    "id": 56,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "902:15:1",
+                    "src": "1031:15:1",
                     "stateMutability": "payable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
@@ -507,16 +451,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "870:61:1"
+              "src": "999:61:1"
             },
-            "src": "854:78:1"
+            "src": "983:78:1"
           },
           {
             "anonymous": false,
             "documentation": {
-              "id": 64,
+              "id": 60,
               "nodeType": "StructuredDocumentation",
-              "src": "938:44:1",
+              "src": "1067:44:1",
               "text": "@notice Event after the amount is tipped"
             },
             "id": 68,
@@ -528,13 +472,13 @@
               "parameters": [
                 {
                   "constant": false,
-                  "id": 66,
+                  "id": 62,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "videoId",
                   "nodeType": "VariableDeclaration",
                   "scope": 68,
-                  "src": "1009:12:1",
+                  "src": "1138:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -542,27 +486,83 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 65,
+                    "id": 61,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1009:4:1",
+                    "src": "1138:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 64,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "creator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 68,
+                  "src": "1160:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 63,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1160:15:1",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 66,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "tipper",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 68,
+                  "src": "1193:22:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 65,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1193:15:1",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "visibility": "internal"
                 }
               ],
-              "src": "999:28:1"
+              "src": "1128:93:1"
             },
-            "src": "987:41:1"
+            "src": "1116:106:1"
           },
           {
             "body": {
-              "id": 101,
+              "id": 105,
               "nodeType": "Block",
-              "src": "1292:243:1",
+              "src": "1841:286:1",
               "statements": [
                 {
                   "expression": {
@@ -574,14 +574,14 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "1302:13:1",
+                    "src": "1851:13:1",
                     "subExpression": {
                       "id": 76,
                       "name": "totalVideos",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 47,
-                      "src": "1302:11:1",
+                      "src": "1851:11:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -594,7 +594,7 @@
                   },
                   "id": 78,
                   "nodeType": "ExpressionStatement",
-                  "src": "1302:13:1"
+                  "src": "1851:13:1"
                 },
                 {
                   "assignments": [
@@ -607,8 +607,8 @@
                       "mutability": "mutable",
                       "name": "_videoId",
                       "nodeType": "VariableDeclaration",
-                      "scope": 101,
-                      "src": "1325:13:1",
+                      "scope": 105,
+                      "src": "1874:13:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -619,7 +619,7 @@
                         "id": 79,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1325:4:1",
+                        "src": "1874:4:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -635,216 +635,266 @@
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 47,
-                    "src": "1341:11:1",
+                    "src": "1890:11:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1325:27:1"
+                  "src": "1874:27:1"
                 },
                 {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "arguments": [
-                          {
-                            "id": 87,
-                            "name": "_videoId",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 80,
-                            "src": "1393:8:1",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_uint256",
-                              "typeString": "uint256"
-                            }
-                          },
-                          {
-                            "id": 88,
-                            "name": "_name",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 71,
-                            "src": "1415:5:1",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_string_memory_ptr",
-                              "typeString": "string memory"
-                            }
-                          },
-                          {
-                            "id": 89,
-                            "name": "_description",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 73,
-                            "src": "1434:12:1",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_string_memory_ptr",
-                              "typeString": "string memory"
-                            }
-                          },
-                          {
-                            "expression": {
-                              "id": 90,
-                              "name": "msg",
-                              "nodeType": "Identifier",
-                              "overloadedDeclarations": [],
-                              "referencedDeclaration": 4294967281,
-                              "src": "1460:3:1",
-                              "typeDescriptions": {
-                                "typeIdentifier": "t_magic_message",
-                                "typeString": "msg"
-                              }
-                            },
-                            "id": 91,
-                            "isConstant": false,
-                            "isLValue": false,
-                            "isPure": false,
-                            "lValueRequested": false,
-                            "memberName": "sender",
-                            "nodeType": "MemberAccess",
-                            "src": "1460:10:1",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_address_payable",
-                              "typeString": "address payable"
-                            }
-                          }
-                        ],
-                        "expression": {
-                          "argumentTypes": [
-                            {
-                              "typeIdentifier": "t_uint256",
-                              "typeString": "uint256"
-                            },
-                            {
-                              "typeIdentifier": "t_string_memory_ptr",
-                              "typeString": "string memory"
-                            },
-                            {
-                              "typeIdentifier": "t_string_memory_ptr",
-                              "typeString": "string memory"
-                            },
-                            {
-                              "typeIdentifier": "t_address_payable",
-                              "typeString": "address payable"
-                            }
-                          ],
-                          "id": 86,
-                          "name": "Video",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 44,
-                          "src": "1374:5:1",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_struct$_Video_$44_storage_ptr_$",
-                            "typeString": "type(struct StakeTube.Video storage pointer)"
-                          }
-                        },
-                        "id": 92,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "kind": "structConstructorCall",
-                        "lValueRequested": false,
-                        "names": [],
-                        "nodeType": "FunctionCall",
-                        "src": "1374:106:1",
-                        "tryCall": false,
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Video_$44_memory_ptr",
-                          "typeString": "struct StakeTube.Video memory"
-                        }
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_struct$_Video_$44_memory_ptr",
-                          "typeString": "struct StakeTube.Video memory"
-                        }
-                      ],
-                      "expression": {
+                  "assignments": [
+                    84
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 84,
+                      "mutability": "mutable",
+                      "name": "video",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 105,
+                      "src": "1911:18:1",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Video_$44_memory_ptr",
+                        "typeString": "struct StakeTube.Video"
+                      },
+                      "typeName": {
                         "id": 83,
-                        "name": "videos",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 51,
-                        "src": "1362:6:1",
+                        "name": "Video",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 44,
+                        "src": "1911:5:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_struct$_Video_$44_storage_$dyn_storage",
-                          "typeString": "struct StakeTube.Video storage ref[] storage ref"
+                          "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
+                          "typeString": "struct StakeTube.Video"
                         }
                       },
-                      "id": 85,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "memberName": "push",
-                      "nodeType": "MemberAccess",
-                      "src": "1362:11:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_Video_$44_storage_$returns$__$",
-                        "typeString": "function (struct StakeTube.Video storage ref)"
-                      }
-                    },
-                    "id": 93,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "1362:119:1",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
+                      "visibility": "internal"
                     }
-                  },
-                  "id": 94,
-                  "nodeType": "ExpressionStatement",
-                  "src": "1362:119:1"
-                },
-                {
-                  "eventCall": {
+                  ],
+                  "id": 92,
+                  "initialValue": {
                     "arguments": [
                       {
-                        "id": 96,
+                        "id": 86,
                         "name": "_videoId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 80,
-                        "src": "1507:8:1",
+                        "src": "1951:8:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         }
                       },
                       {
+                        "id": 87,
+                        "name": "_name",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 71,
+                        "src": "1973:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 88,
+                        "name": "_description",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 73,
+                        "src": "1992:12:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
                         "expression": {
-                          "id": 97,
+                          "id": 89,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 4294967281,
-                          "src": "1517:3:1",
+                          "src": "2018:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 98,
+                        "id": 90,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "src": "1517:10:1",
+                        "src": "2018:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 85,
+                      "name": "Video",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 44,
+                      "src": "1932:5:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_Video_$44_storage_ptr_$",
+                        "typeString": "type(struct StakeTube.Video storage pointer)"
+                      }
+                    },
+                    "id": 91,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1932:106:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Video_$44_memory_ptr",
+                      "typeString": "struct StakeTube.Video memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1911:127:1"
+                },
+                {
+                  "expression": {
+                    "id": 97,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 93,
+                        "name": "videos",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 52,
+                        "src": "2048:6:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Video_$44_storage_$",
+                          "typeString": "mapping(uint256 => struct StakeTube.Video storage ref)"
+                        }
+                      },
+                      "id": 95,
+                      "indexExpression": {
+                        "id": 94,
+                        "name": "_videoId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 80,
+                        "src": "2055:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "2048:16:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Video_$44_storage",
+                        "typeString": "struct StakeTube.Video storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 96,
+                      "name": "video",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 84,
+                      "src": "2067:5:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Video_$44_memory_ptr",
+                        "typeString": "struct StakeTube.Video memory"
+                      }
+                    },
+                    "src": "2048:24:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Video_$44_storage",
+                      "typeString": "struct StakeTube.Video storage ref"
+                    }
+                  },
+                  "id": 98,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2048:24:1"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 100,
+                        "name": "_videoId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 80,
+                        "src": "2098:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 101,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2108:3:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 102,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2108:10:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
@@ -862,18 +912,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 95,
+                      "id": 99,
                       "name": "videoAdded",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 63,
-                      "src": "1496:10:1",
+                      "referencedDeclaration": 59,
+                      "src": "2087:10:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_payable_$returns$__$",
                         "typeString": "function (uint256,address payable)"
                       }
                     },
-                    "id": 99,
+                    "id": 103,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -881,27 +931,27 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1496:32:1",
+                    "src": "2087:32:1",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 100,
+                  "id": 104,
                   "nodeType": "EmitStatement",
-                  "src": "1491:37:1"
+                  "src": "2082:37:1"
                 }
               ]
             },
             "documentation": {
               "id": 69,
               "nodeType": "StructuredDocumentation",
-              "src": "1034:179:1",
+              "src": "1228:179:1",
               "text": "@dev Adds Video Details to the blockchain\n @dev Add the necessary require statements\n @param _name Name of Video\n @param _description Description of Video"
             },
             "functionSelector": "0dbd9bdc",
-            "id": 102,
+            "id": 106,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -917,8 +967,8 @@
                   "mutability": "mutable",
                   "name": "_name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 102,
-                  "src": "1236:19:1",
+                  "scope": 106,
+                  "src": "1785:19:1",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -929,7 +979,7 @@
                     "id": 70,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1236:6:1",
+                    "src": "1785:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -943,8 +993,8 @@
                   "mutability": "mutable",
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
-                  "scope": 102,
-                  "src": "1257:26:1",
+                  "scope": 106,
+                  "src": "1806:26:1",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -955,7 +1005,7 @@
                     "id": 72,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1257:6:1",
+                    "src": "1806:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -964,104 +1014,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1235:49:1"
+              "src": "1784:49:1"
             },
             "returnParameters": {
               "id": 75,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1292:0:1"
+              "src": "1841:0:1"
             },
-            "scope": 123,
-            "src": "1218:317:1",
+            "scope": 152,
+            "src": "1767:360:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 121,
+              "id": 150,
               "nodeType": "Block",
-              "src": "1721:124:1",
+              "src": "2373:340:1",
               "statements": [
-                {
-                  "assignments": [
-                    107
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 107,
-                      "mutability": "mutable",
-                      "name": "myVideo",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 121,
-                      "src": "1731:21:1",
-                      "stateVariable": false,
-                      "storageLocation": "storage",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
-                        "typeString": "struct StakeTube.Video"
-                      },
-                      "typeName": {
-                        "id": 106,
-                        "name": "Video",
-                        "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 44,
-                        "src": "1731:5:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
-                          "typeString": "struct StakeTube.Video"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 111,
-                  "initialValue": {
-                    "baseExpression": {
-                      "id": 108,
-                      "name": "videos",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 51,
-                      "src": "1755:6:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_array$_t_struct$_Video_$44_storage_$dyn_storage",
-                        "typeString": "struct StakeTube.Video storage ref[] storage ref"
-                      }
-                    },
-                    "id": 110,
-                    "indexExpression": {
-                      "hexValue": "30",
-                      "id": 109,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "1762:1:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_rational_0_by_1",
-                        "typeString": "int_const 0"
-                      },
-                      "value": "0"
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "1755:9:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Video_$44_storage",
-                      "typeString": "struct StakeTube.Video storage ref"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "1731:33:1"
-                },
                 {
                   "assignments": [
                     113
@@ -1071,10 +1043,148 @@
                       "constant": false,
                       "id": 113,
                       "mutability": "mutable",
+                      "name": "myVideo",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 150,
+                      "src": "2383:21:1",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
+                        "typeString": "struct StakeTube.Video"
+                      },
+                      "typeName": {
+                        "id": 112,
+                        "name": "Video",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 44,
+                        "src": "2383:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
+                          "typeString": "struct StakeTube.Video"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 117,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 114,
+                      "name": "videos",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 52,
+                      "src": "2407:6:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Video_$44_storage_$",
+                        "typeString": "mapping(uint256 => struct StakeTube.Video storage ref)"
+                      }
+                    },
+                    "id": 116,
+                    "indexExpression": {
+                      "id": 115,
+                      "name": "_videoId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 109,
+                      "src": "2414:8:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2407:16:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Video_$44_storage",
+                      "typeString": "struct StakeTube.Video storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2383:40:1"
+                },
+                {
+                  "assignments": [
+                    119
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 119,
+                      "mutability": "mutable",
+                      "name": "creator",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 150,
+                      "src": "2433:23:1",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      },
+                      "typeName": {
+                        "id": 118,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2433:15:1",
+                        "stateMutability": "payable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 122,
+                  "initialValue": {
+                    "expression": {
+                      "id": 120,
+                      "name": "myVideo",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 113,
+                      "src": "2459:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
+                        "typeString": "struct StakeTube.Video storage pointer"
+                      }
+                    },
+                    "id": 121,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "creator",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 43,
+                    "src": "2459:15:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2433:41:1"
+                },
+                {
+                  "assignments": [
+                    124
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 124,
+                      "mutability": "mutable",
                       "name": "myVideoId",
                       "nodeType": "VariableDeclaration",
-                      "scope": 121,
-                      "src": "1774:14:1",
+                      "scope": 150,
+                      "src": "2484:14:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1082,10 +1192,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 112,
+                        "id": 123,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1774:4:1",
+                        "src": "2484:4:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1094,21 +1204,21 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 116,
+                  "id": 127,
                   "initialValue": {
                     "expression": {
-                      "id": 114,
+                      "id": 125,
                       "name": "myVideo",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 107,
-                      "src": "1791:7:1",
+                      "referencedDeclaration": 113,
+                      "src": "2501:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
                         "typeString": "struct StakeTube.Video storage pointer"
                       }
                     },
-                    "id": 115,
+                    "id": 126,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
@@ -1116,25 +1226,163 @@
                     "memberName": "videoId",
                     "nodeType": "MemberAccess",
                     "referencedDeclaration": 37,
-                    "src": "1791:15:1",
+                    "src": "2501:15:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1774:32:1"
+                  "src": "2484:32:1"
                 },
                 {
-                  "eventCall": {
+                  "expression": {
                     "arguments": [
                       {
-                        "id": 118,
-                        "name": "myVideoId",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 113,
-                        "src": "1828:9:1",
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 132,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 129,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "2548:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 130,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "src": "2548:9:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "hexValue": "30",
+                          "id": 131,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "2560:1:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "2548:13:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "546865207469702073686f756c64206265206e6f6e2d7a65726f2e",
+                        "id": 133,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2576:29:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_ca9caeec87746d4c246a1bf4d4b14844108ebfd6d490f11dc171bb39d08df3bd",
+                          "typeString": "literal_string \"The tip should be non-zero.\""
+                        },
+                        "value": "The tip should be non-zero."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_ca9caeec87746d4c246a1bf4d4b14844108ebfd6d490f11dc171bb39d08df3bd",
+                          "typeString": "literal_string \"The tip should be non-zero.\""
+                        }
+                      ],
+                      "id": 128,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2527:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 134,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2527:88:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 135,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2527:88:1"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 139,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2643:3:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 140,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "src": "2643:9:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1148,18 +1396,32 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 117,
-                      "name": "tipped",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 68,
-                      "src": "1821:6:1",
+                      "expression": {
+                        "id": 136,
+                        "name": "creator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 119,
+                        "src": "2626:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "id": 138,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "src": "2626:16:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 119,
+                    "id": 141,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1167,65 +1429,191 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1821:17:1",
+                    "src": "2626:27:1",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 120,
+                  "id": 142,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2626:27:1"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 144,
+                        "name": "myVideoId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 124,
+                        "src": "2675:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 145,
+                        "name": "creator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 119,
+                        "src": "2686:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 146,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2695:3:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 147,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2695:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 143,
+                      "name": "tipped",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 68,
+                      "src": "2668:6:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_payable_$_t_address_payable_$returns$__$",
+                        "typeString": "function (uint256,address payable,address payable)"
+                      }
+                    },
+                    "id": 148,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2668:38:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 149,
                   "nodeType": "EmitStatement",
-                  "src": "1816:22:1"
+                  "src": "2663:43:1"
                 }
               ]
             },
             "documentation": {
-              "id": 103,
+              "id": 107,
               "nodeType": "StructuredDocumentation",
-              "src": "1541:153:1",
-              "text": "@notice Function for tipping the creator of the video\n @dev CAUTION Currently it is taking the index of array, to be modified to take video Id"
+              "src": "2133:193:1",
+              "text": "@notice Function for tipping the creator of the video\n @param _videoId Id of the video\n @dev CAUTION Currently it is taking the index of array, to be modified to take video Id"
             },
-            "functionSelector": "2755cd2d",
-            "id": 122,
+            "functionSelector": "e8b69bc3",
+            "id": 151,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "tip",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 104,
+              "id": 110,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1711:2:1"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 109,
+                  "mutability": "mutable",
+                  "name": "_videoId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 151,
+                  "src": "2344:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 108,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2344:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2343:15:1"
             },
             "returnParameters": {
-              "id": 105,
+              "id": 111,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1721:0:1"
+              "src": "2373:0:1"
             },
-            "scope": 123,
-            "src": "1699:146:1",
-            "stateMutability": "nonpayable",
+            "scope": 152,
+            "src": "2331:382:1",
+            "stateMutability": "payable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 124,
-        "src": "231:1617:1"
+        "scope": 153,
+        "src": "231:2485:1"
       }
     ],
-    "src": "39:1809:1"
+    "src": "39:2677:1"
   },
   "legacyAST": {
     "absolutePath": "/home/versilio/VERSILIO/Techworks/Blockchain/Stake-Tube/st-artist/contracts/StakeTube.sol",
     "exportedSymbols": {
       "StakeTube": [
-        123
+        152
       ]
     },
-    "id": 124,
+    "id": 153,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -1252,9 +1640,9 @@
           "text": "@title Attention economy for videos\n @author Aniket Parate\n @notice Contract implementing direct and complete payment to the artist as well as adding videos"
         },
         "fullyImplemented": true,
-        "id": 123,
+        "id": 152,
         "linearizedBaseContracts": [
-          123
+          152
         ],
         "name": "StakeTube",
         "nodeType": "ContractDefinition",
@@ -1371,7 +1759,7 @@
             ],
             "name": "Video",
             "nodeType": "StructDefinition",
-            "scope": 123,
+            "scope": 152,
             "src": "386:151:1",
             "visibility": "public"
           },
@@ -1388,7 +1776,7 @@
             "mutability": "mutable",
             "name": "totalVideos",
             "nodeType": "VariableDeclaration",
-            "scope": 123,
+            "scope": 152,
             "src": "600:23:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1413,59 +1801,16 @@
             "documentation": {
               "id": 48,
               "nodeType": "StructuredDocumentation",
-              "src": "630:43:1",
-              "text": "@notice Array containing all the videos"
+              "src": "709:74:1",
+              "text": "@notice Mapping from video id to the video struct stored on blockchain"
             },
             "functionSelector": "e6821bf5",
-            "id": 51,
+            "id": 52,
             "mutability": "mutable",
             "name": "videos",
             "nodeType": "VariableDeclaration",
-            "scope": 123,
-            "src": "678:21:1",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_Video_$44_storage_$dyn_storage",
-              "typeString": "struct StakeTube.Video[]"
-            },
-            "typeName": {
-              "baseType": {
-                "id": 49,
-                "name": "Video",
-                "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 44,
-                "src": "678:5:1",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
-                  "typeString": "struct StakeTube.Video"
-                }
-              },
-              "id": 50,
-              "nodeType": "ArrayTypeName",
-              "src": "678:7:1",
-              "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_Video_$44_storage_$dyn_storage_ptr",
-                "typeString": "struct StakeTube.Video[]"
-              }
-            },
-            "visibility": "public"
-          },
-          {
-            "constant": false,
-            "documentation": {
-              "id": 52,
-              "nodeType": "StructuredDocumentation",
-              "src": "706:43:1",
-              "text": "@notice mapping from id to Video object"
-            },
-            "functionSelector": "cd544f64",
-            "id": 56,
-            "mutability": "mutable",
-            "name": "idToVideo",
-            "nodeType": "VariableDeclaration",
-            "scope": 123,
-            "src": "754:39:1",
+            "scope": 152,
+            "src": "788:37:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1473,29 +1818,29 @@
               "typeString": "mapping(uint256 => struct StakeTube.Video)"
             },
             "typeName": {
-              "id": 55,
+              "id": 51,
               "keyType": {
-                "id": 53,
+                "id": 49,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "762:4:1",
+                "src": "797:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "754:22:1",
+              "src": "788:23:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Video_$44_storage_$",
                 "typeString": "mapping(uint256 => struct StakeTube.Video)"
               },
               "valueType": {
-                "id": 54,
+                "id": 50,
                 "name": "Video",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 44,
-                "src": "770:5:1",
+                "src": "805:5:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
                   "typeString": "struct StakeTube.Video"
@@ -1507,27 +1852,27 @@
           {
             "anonymous": false,
             "documentation": {
-              "id": 57,
+              "id": 53,
               "nodeType": "StructuredDocumentation",
-              "src": "800:49:1",
+              "src": "929:49:1",
               "text": "@notice Event emitted after video is addVideo"
             },
-            "id": 63,
+            "id": 59,
             "name": "videoAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 62,
+              "id": 58,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 59,
+                  "id": 55,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "videoId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 63,
-                  "src": "880:12:1",
+                  "scope": 59,
+                  "src": "1009:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1535,10 +1880,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 58,
+                    "id": 54,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "880:4:1",
+                    "src": "1009:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1548,13 +1893,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 61,
+                  "id": 57,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "creator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 63,
-                  "src": "902:23:1",
+                  "scope": 59,
+                  "src": "1031:23:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1562,10 +1907,10 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 60,
+                    "id": 56,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "902:15:1",
+                    "src": "1031:15:1",
                     "stateMutability": "payable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
@@ -1575,16 +1920,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "870:61:1"
+              "src": "999:61:1"
             },
-            "src": "854:78:1"
+            "src": "983:78:1"
           },
           {
             "anonymous": false,
             "documentation": {
-              "id": 64,
+              "id": 60,
               "nodeType": "StructuredDocumentation",
-              "src": "938:44:1",
+              "src": "1067:44:1",
               "text": "@notice Event after the amount is tipped"
             },
             "id": 68,
@@ -1596,13 +1941,13 @@
               "parameters": [
                 {
                   "constant": false,
-                  "id": 66,
+                  "id": 62,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "videoId",
                   "nodeType": "VariableDeclaration",
                   "scope": 68,
-                  "src": "1009:12:1",
+                  "src": "1138:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1610,27 +1955,83 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 65,
+                    "id": 61,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1009:4:1",
+                    "src": "1138:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 64,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "creator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 68,
+                  "src": "1160:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 63,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1160:15:1",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 66,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "tipper",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 68,
+                  "src": "1193:22:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 65,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1193:15:1",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "visibility": "internal"
                 }
               ],
-              "src": "999:28:1"
+              "src": "1128:93:1"
             },
-            "src": "987:41:1"
+            "src": "1116:106:1"
           },
           {
             "body": {
-              "id": 101,
+              "id": 105,
               "nodeType": "Block",
-              "src": "1292:243:1",
+              "src": "1841:286:1",
               "statements": [
                 {
                   "expression": {
@@ -1642,14 +2043,14 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "1302:13:1",
+                    "src": "1851:13:1",
                     "subExpression": {
                       "id": 76,
                       "name": "totalVideos",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 47,
-                      "src": "1302:11:1",
+                      "src": "1851:11:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1662,7 +2063,7 @@
                   },
                   "id": 78,
                   "nodeType": "ExpressionStatement",
-                  "src": "1302:13:1"
+                  "src": "1851:13:1"
                 },
                 {
                   "assignments": [
@@ -1675,8 +2076,8 @@
                       "mutability": "mutable",
                       "name": "_videoId",
                       "nodeType": "VariableDeclaration",
-                      "scope": 101,
-                      "src": "1325:13:1",
+                      "scope": 105,
+                      "src": "1874:13:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1687,7 +2088,7 @@
                         "id": 79,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1325:4:1",
+                        "src": "1874:4:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1703,216 +2104,266 @@
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 47,
-                    "src": "1341:11:1",
+                    "src": "1890:11:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1325:27:1"
+                  "src": "1874:27:1"
                 },
                 {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "arguments": [
-                          {
-                            "id": 87,
-                            "name": "_videoId",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 80,
-                            "src": "1393:8:1",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_uint256",
-                              "typeString": "uint256"
-                            }
-                          },
-                          {
-                            "id": 88,
-                            "name": "_name",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 71,
-                            "src": "1415:5:1",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_string_memory_ptr",
-                              "typeString": "string memory"
-                            }
-                          },
-                          {
-                            "id": 89,
-                            "name": "_description",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 73,
-                            "src": "1434:12:1",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_string_memory_ptr",
-                              "typeString": "string memory"
-                            }
-                          },
-                          {
-                            "expression": {
-                              "id": 90,
-                              "name": "msg",
-                              "nodeType": "Identifier",
-                              "overloadedDeclarations": [],
-                              "referencedDeclaration": 4294967281,
-                              "src": "1460:3:1",
-                              "typeDescriptions": {
-                                "typeIdentifier": "t_magic_message",
-                                "typeString": "msg"
-                              }
-                            },
-                            "id": 91,
-                            "isConstant": false,
-                            "isLValue": false,
-                            "isPure": false,
-                            "lValueRequested": false,
-                            "memberName": "sender",
-                            "nodeType": "MemberAccess",
-                            "src": "1460:10:1",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_address_payable",
-                              "typeString": "address payable"
-                            }
-                          }
-                        ],
-                        "expression": {
-                          "argumentTypes": [
-                            {
-                              "typeIdentifier": "t_uint256",
-                              "typeString": "uint256"
-                            },
-                            {
-                              "typeIdentifier": "t_string_memory_ptr",
-                              "typeString": "string memory"
-                            },
-                            {
-                              "typeIdentifier": "t_string_memory_ptr",
-                              "typeString": "string memory"
-                            },
-                            {
-                              "typeIdentifier": "t_address_payable",
-                              "typeString": "address payable"
-                            }
-                          ],
-                          "id": 86,
-                          "name": "Video",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 44,
-                          "src": "1374:5:1",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_struct$_Video_$44_storage_ptr_$",
-                            "typeString": "type(struct StakeTube.Video storage pointer)"
-                          }
-                        },
-                        "id": 92,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "kind": "structConstructorCall",
-                        "lValueRequested": false,
-                        "names": [],
-                        "nodeType": "FunctionCall",
-                        "src": "1374:106:1",
-                        "tryCall": false,
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Video_$44_memory_ptr",
-                          "typeString": "struct StakeTube.Video memory"
-                        }
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_struct$_Video_$44_memory_ptr",
-                          "typeString": "struct StakeTube.Video memory"
-                        }
-                      ],
-                      "expression": {
+                  "assignments": [
+                    84
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 84,
+                      "mutability": "mutable",
+                      "name": "video",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 105,
+                      "src": "1911:18:1",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Video_$44_memory_ptr",
+                        "typeString": "struct StakeTube.Video"
+                      },
+                      "typeName": {
                         "id": 83,
-                        "name": "videos",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 51,
-                        "src": "1362:6:1",
+                        "name": "Video",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 44,
+                        "src": "1911:5:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_struct$_Video_$44_storage_$dyn_storage",
-                          "typeString": "struct StakeTube.Video storage ref[] storage ref"
+                          "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
+                          "typeString": "struct StakeTube.Video"
                         }
                       },
-                      "id": 85,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "memberName": "push",
-                      "nodeType": "MemberAccess",
-                      "src": "1362:11:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_Video_$44_storage_$returns$__$",
-                        "typeString": "function (struct StakeTube.Video storage ref)"
-                      }
-                    },
-                    "id": 93,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "1362:119:1",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
+                      "visibility": "internal"
                     }
-                  },
-                  "id": 94,
-                  "nodeType": "ExpressionStatement",
-                  "src": "1362:119:1"
-                },
-                {
-                  "eventCall": {
+                  ],
+                  "id": 92,
+                  "initialValue": {
                     "arguments": [
                       {
-                        "id": 96,
+                        "id": 86,
                         "name": "_videoId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 80,
-                        "src": "1507:8:1",
+                        "src": "1951:8:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         }
                       },
                       {
+                        "id": 87,
+                        "name": "_name",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 71,
+                        "src": "1973:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 88,
+                        "name": "_description",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 73,
+                        "src": "1992:12:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
                         "expression": {
-                          "id": 97,
+                          "id": 89,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 4294967281,
-                          "src": "1517:3:1",
+                          "src": "2018:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 98,
+                        "id": 90,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "src": "1517:10:1",
+                        "src": "2018:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 85,
+                      "name": "Video",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 44,
+                      "src": "1932:5:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_Video_$44_storage_ptr_$",
+                        "typeString": "type(struct StakeTube.Video storage pointer)"
+                      }
+                    },
+                    "id": 91,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1932:106:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Video_$44_memory_ptr",
+                      "typeString": "struct StakeTube.Video memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1911:127:1"
+                },
+                {
+                  "expression": {
+                    "id": 97,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 93,
+                        "name": "videos",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 52,
+                        "src": "2048:6:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Video_$44_storage_$",
+                          "typeString": "mapping(uint256 => struct StakeTube.Video storage ref)"
+                        }
+                      },
+                      "id": 95,
+                      "indexExpression": {
+                        "id": 94,
+                        "name": "_videoId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 80,
+                        "src": "2055:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "2048:16:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Video_$44_storage",
+                        "typeString": "struct StakeTube.Video storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 96,
+                      "name": "video",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 84,
+                      "src": "2067:5:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Video_$44_memory_ptr",
+                        "typeString": "struct StakeTube.Video memory"
+                      }
+                    },
+                    "src": "2048:24:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Video_$44_storage",
+                      "typeString": "struct StakeTube.Video storage ref"
+                    }
+                  },
+                  "id": 98,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2048:24:1"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 100,
+                        "name": "_videoId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 80,
+                        "src": "2098:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 101,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2108:3:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 102,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2108:10:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
@@ -1930,18 +2381,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 95,
+                      "id": 99,
                       "name": "videoAdded",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 63,
-                      "src": "1496:10:1",
+                      "referencedDeclaration": 59,
+                      "src": "2087:10:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_payable_$returns$__$",
                         "typeString": "function (uint256,address payable)"
                       }
                     },
-                    "id": 99,
+                    "id": 103,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1949,27 +2400,27 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1496:32:1",
+                    "src": "2087:32:1",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 100,
+                  "id": 104,
                   "nodeType": "EmitStatement",
-                  "src": "1491:37:1"
+                  "src": "2082:37:1"
                 }
               ]
             },
             "documentation": {
               "id": 69,
               "nodeType": "StructuredDocumentation",
-              "src": "1034:179:1",
+              "src": "1228:179:1",
               "text": "@dev Adds Video Details to the blockchain\n @dev Add the necessary require statements\n @param _name Name of Video\n @param _description Description of Video"
             },
             "functionSelector": "0dbd9bdc",
-            "id": 102,
+            "id": 106,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -1985,8 +2436,8 @@
                   "mutability": "mutable",
                   "name": "_name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 102,
-                  "src": "1236:19:1",
+                  "scope": 106,
+                  "src": "1785:19:1",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1997,7 +2448,7 @@
                     "id": 70,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1236:6:1",
+                    "src": "1785:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -2011,8 +2462,8 @@
                   "mutability": "mutable",
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
-                  "scope": 102,
-                  "src": "1257:26:1",
+                  "scope": 106,
+                  "src": "1806:26:1",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -2023,7 +2474,7 @@
                     "id": 72,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1257:6:1",
+                    "src": "1806:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -2032,104 +2483,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1235:49:1"
+              "src": "1784:49:1"
             },
             "returnParameters": {
               "id": 75,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1292:0:1"
+              "src": "1841:0:1"
             },
-            "scope": 123,
-            "src": "1218:317:1",
+            "scope": 152,
+            "src": "1767:360:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 121,
+              "id": 150,
               "nodeType": "Block",
-              "src": "1721:124:1",
+              "src": "2373:340:1",
               "statements": [
-                {
-                  "assignments": [
-                    107
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 107,
-                      "mutability": "mutable",
-                      "name": "myVideo",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 121,
-                      "src": "1731:21:1",
-                      "stateVariable": false,
-                      "storageLocation": "storage",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
-                        "typeString": "struct StakeTube.Video"
-                      },
-                      "typeName": {
-                        "id": 106,
-                        "name": "Video",
-                        "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 44,
-                        "src": "1731:5:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
-                          "typeString": "struct StakeTube.Video"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 111,
-                  "initialValue": {
-                    "baseExpression": {
-                      "id": 108,
-                      "name": "videos",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 51,
-                      "src": "1755:6:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_array$_t_struct$_Video_$44_storage_$dyn_storage",
-                        "typeString": "struct StakeTube.Video storage ref[] storage ref"
-                      }
-                    },
-                    "id": 110,
-                    "indexExpression": {
-                      "hexValue": "30",
-                      "id": 109,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "1762:1:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_rational_0_by_1",
-                        "typeString": "int_const 0"
-                      },
-                      "value": "0"
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "1755:9:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Video_$44_storage",
-                      "typeString": "struct StakeTube.Video storage ref"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "1731:33:1"
-                },
                 {
                   "assignments": [
                     113
@@ -2139,10 +2512,148 @@
                       "constant": false,
                       "id": 113,
                       "mutability": "mutable",
+                      "name": "myVideo",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 150,
+                      "src": "2383:21:1",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
+                        "typeString": "struct StakeTube.Video"
+                      },
+                      "typeName": {
+                        "id": 112,
+                        "name": "Video",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 44,
+                        "src": "2383:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
+                          "typeString": "struct StakeTube.Video"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 117,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 114,
+                      "name": "videos",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 52,
+                      "src": "2407:6:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Video_$44_storage_$",
+                        "typeString": "mapping(uint256 => struct StakeTube.Video storage ref)"
+                      }
+                    },
+                    "id": 116,
+                    "indexExpression": {
+                      "id": 115,
+                      "name": "_videoId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 109,
+                      "src": "2414:8:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2407:16:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Video_$44_storage",
+                      "typeString": "struct StakeTube.Video storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2383:40:1"
+                },
+                {
+                  "assignments": [
+                    119
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 119,
+                      "mutability": "mutable",
+                      "name": "creator",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 150,
+                      "src": "2433:23:1",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      },
+                      "typeName": {
+                        "id": 118,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2433:15:1",
+                        "stateMutability": "payable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 122,
+                  "initialValue": {
+                    "expression": {
+                      "id": 120,
+                      "name": "myVideo",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 113,
+                      "src": "2459:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
+                        "typeString": "struct StakeTube.Video storage pointer"
+                      }
+                    },
+                    "id": 121,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "creator",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 43,
+                    "src": "2459:15:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2433:41:1"
+                },
+                {
+                  "assignments": [
+                    124
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 124,
+                      "mutability": "mutable",
                       "name": "myVideoId",
                       "nodeType": "VariableDeclaration",
-                      "scope": 121,
-                      "src": "1774:14:1",
+                      "scope": 150,
+                      "src": "2484:14:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -2150,10 +2661,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 112,
+                        "id": 123,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1774:4:1",
+                        "src": "2484:4:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -2162,21 +2673,21 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 116,
+                  "id": 127,
                   "initialValue": {
                     "expression": {
-                      "id": 114,
+                      "id": 125,
                       "name": "myVideo",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 107,
-                      "src": "1791:7:1",
+                      "referencedDeclaration": 113,
+                      "src": "2501:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Video_$44_storage_ptr",
                         "typeString": "struct StakeTube.Video storage pointer"
                       }
                     },
-                    "id": 115,
+                    "id": 126,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
@@ -2184,25 +2695,163 @@
                     "memberName": "videoId",
                     "nodeType": "MemberAccess",
                     "referencedDeclaration": 37,
-                    "src": "1791:15:1",
+                    "src": "2501:15:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1774:32:1"
+                  "src": "2484:32:1"
                 },
                 {
-                  "eventCall": {
+                  "expression": {
                     "arguments": [
                       {
-                        "id": 118,
-                        "name": "myVideoId",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 113,
-                        "src": "1828:9:1",
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 132,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 129,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "2548:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 130,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "src": "2548:9:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "hexValue": "30",
+                          "id": 131,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "2560:1:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "2548:13:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "546865207469702073686f756c64206265206e6f6e2d7a65726f2e",
+                        "id": 133,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2576:29:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_ca9caeec87746d4c246a1bf4d4b14844108ebfd6d490f11dc171bb39d08df3bd",
+                          "typeString": "literal_string \"The tip should be non-zero.\""
+                        },
+                        "value": "The tip should be non-zero."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_ca9caeec87746d4c246a1bf4d4b14844108ebfd6d490f11dc171bb39d08df3bd",
+                          "typeString": "literal_string \"The tip should be non-zero.\""
+                        }
+                      ],
+                      "id": 128,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2527:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 134,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2527:88:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 135,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2527:88:1"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 139,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2643:3:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 140,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "src": "2643:9:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -2216,18 +2865,32 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 117,
-                      "name": "tipped",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 68,
-                      "src": "1821:6:1",
+                      "expression": {
+                        "id": 136,
+                        "name": "creator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 119,
+                        "src": "2626:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "id": 138,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "src": "2626:16:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 119,
+                    "id": 141,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2235,56 +2898,182 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1821:17:1",
+                    "src": "2626:27:1",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 120,
+                  "id": 142,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2626:27:1"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 144,
+                        "name": "myVideoId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 124,
+                        "src": "2675:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 145,
+                        "name": "creator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 119,
+                        "src": "2686:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 146,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2695:3:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 147,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2695:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 143,
+                      "name": "tipped",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 68,
+                      "src": "2668:6:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_payable_$_t_address_payable_$returns$__$",
+                        "typeString": "function (uint256,address payable,address payable)"
+                      }
+                    },
+                    "id": 148,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2668:38:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 149,
                   "nodeType": "EmitStatement",
-                  "src": "1816:22:1"
+                  "src": "2663:43:1"
                 }
               ]
             },
             "documentation": {
-              "id": 103,
+              "id": 107,
               "nodeType": "StructuredDocumentation",
-              "src": "1541:153:1",
-              "text": "@notice Function for tipping the creator of the video\n @dev CAUTION Currently it is taking the index of array, to be modified to take video Id"
+              "src": "2133:193:1",
+              "text": "@notice Function for tipping the creator of the video\n @param _videoId Id of the video\n @dev CAUTION Currently it is taking the index of array, to be modified to take video Id"
             },
-            "functionSelector": "2755cd2d",
-            "id": 122,
+            "functionSelector": "e8b69bc3",
+            "id": 151,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "tip",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 104,
+              "id": 110,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "1711:2:1"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 109,
+                  "mutability": "mutable",
+                  "name": "_videoId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 151,
+                  "src": "2344:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 108,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2344:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2343:15:1"
             },
             "returnParameters": {
-              "id": 105,
+              "id": 111,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1721:0:1"
+              "src": "2373:0:1"
             },
-            "scope": 123,
-            "src": "1699:146:1",
-            "stateMutability": "nonpayable",
+            "scope": 152,
+            "src": "2331:382:1",
+            "stateMutability": "payable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 124,
-        "src": "231:1617:1"
+        "scope": 153,
+        "src": "231:2485:1"
       }
     ],
-    "src": "39:1809:1"
+    "src": "39:2677:1"
   },
   "compiler": {
     "name": "solc",
@@ -2311,15 +3100,41 @@
           ],
           "name": "videoAdded",
           "type": "event"
+        },
+        "0xff4e2c4b5b26e1896ee316ccc4b45ebe98440c57e707da4c11c3354727260f72": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "videoId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address payable",
+              "name": "creator",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address payable",
+              "name": "tipper",
+              "type": "address"
+            }
+          ],
+          "name": "tipped",
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0x6cA6c1A725001a35776CE093D89458020fe8Ba66",
-      "transactionHash": "0xabfbc93314c981f22c79e31f5ceec7e62af0ef3d350c12693dfa41d0cb67a7b6"
+      "address": "0x4fB1db82741Dd3f81b26952366111bbA6d46c8Ea",
+      "transactionHash": "0xf8a3a8d9dcc60c1195fcfd33c91b2fbaf918eaea982d5f56fab5701799c88805"
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-01-09T20:29:35.546Z",
+  "updatedAt": "2021-01-10T10:23:58.776Z",
+  "networkType": "ethereum",
   "devdoc": {
     "author": "Aniket Parate",
     "kind": "dev",
@@ -2331,8 +3146,11 @@
           "_name": "Name of Video"
         }
       },
-      "tip()": {
-        "details": "CAUTION Currently it is taking the index of array, to be modified to take video Id"
+      "tip(uint256)": {
+        "details": "CAUTION Currently it is taking the index of array, to be modified to take video Id",
+        "params": {
+          "_videoId": "Id of the video"
+        }
       }
     },
     "title": "Attention economy for videos",
@@ -2340,7 +3158,7 @@
   },
   "userdoc": {
     "events": {
-      "tipped(uint256)": {
+      "tipped(uint256,address,address)": {
         "notice": "Event after the amount is tipped"
       },
       "videoAdded(uint256,address)": {
@@ -2349,17 +3167,14 @@
     },
     "kind": "user",
     "methods": {
-      "idToVideo(uint256)": {
-        "notice": "mapping from id to Video object"
-      },
-      "tip()": {
+      "tip(uint256)": {
         "notice": "Function for tipping the creator of the video"
       },
       "totalVideos()": {
         "notice": "total number of videos stored currently."
       },
       "videos(uint256)": {
-        "notice": "Array containing all the videos"
+        "notice": "Mapping from video id to the video struct stored on blockchain"
       }
     },
     "notice": "Contract implementing direct and complete payment to the artist as well as adding videos",

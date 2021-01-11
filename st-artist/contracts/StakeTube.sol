@@ -43,6 +43,11 @@ contract StakeTube {
         address payable tipper
     );
 
+    /// @notice Event after the tip is distributed
+    event tipDistributed(
+        uint payoutAmount
+    );
+
     /// @dev Adds Video Details to the blockchain
     /// @dev Add the necessary require statements
     /// @param _name Name of Video
@@ -67,10 +72,38 @@ contract StakeTube {
         idToTippers[_videoId].push(msg.sender);
     }
 
+    /// @notice Function for distribution of tip among all the tippers
+    /// @dev optimizations could be done using the bulk payments maybe or merkel trees
+    /// @dev Here security could be implemented to ensure that it is only called tip function
+    // TODO: Implement the above security proposal statement
+    // TODO: Test this function
+    function distributeTip(address payable[] memory _tippers, uint _payout) public payable {
+        uint tippersNumber = _tippers.length;
+        
+        uint fraction = 0;
+        uint num = 0;
+        uint deno;  // Sum of n consecutive numbers: n(n+1)/2
+        if(tippersNumber % 2 == 0)
+            deno = (tippersNumber/2)*(tippersNumber + 1);
+        else
+            deno = tippersNumber*((tippersNumber+1)/2);
+        
+        // Microtransactions
+        for(uint i = 0; i < tippersNumber; i++){
+            num = tippersNumber - i;
+            fraction = num/deno;
+            _tippers[i].transfer(fraction * _payout);
+        }
+        // As there is no float in solidity, some amount may be left out, see how it is to be handled
+        // TODO: Maybe this itself can be a payout to the platform
+
+        emit tipDistributed(_payout);
+    }
+
     /// @notice Function for tipping the creator of the video
     /// @param _videoId Id of the video
     /// @dev CAUTION Currently it is taking the index of array, to be modified to take video Id
-    function tip(uint _videoId) public payable{
+    function tip (uint _videoId) public payable{
         Video storage myVideo = idToVideo[_videoId];
         address payable creator = myVideo.creator;
         uint myVideoId = myVideo.videoId;
@@ -95,7 +128,7 @@ contract StakeTube {
         addTipper(_videoId);
 
         // TODO: Failure condition of the value transfer to be handled
-        // TODO: Distribution function to be implemented.
+        // TODO: Call distribute function here
         creator.transfer(msg.value);
         emit tipped(myVideoId, creator, msg.sender);
     }

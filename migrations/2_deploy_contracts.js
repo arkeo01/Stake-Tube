@@ -1,5 +1,5 @@
-const Airbnb = artifacts.require("Airbnb");
+const StakeTube = artifacts.require("StakeTube");
 
-module.exports = function(deployer) {
-  deployer.deploy(Airbnb);
+module.exports = function (deployer) {
+  deployer.deploy(StakeTube);
 };
